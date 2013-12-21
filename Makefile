@@ -3,7 +3,7 @@ CFLAGS   += -W -Wall -std=c99 -Wextra
 CFLAGS   += -I./
 CFLAGS   += -D _GNU_SOURCE
 NAME      = librb.a
-SRC       = src/rb.c
+SRC       = src/rb.c src/rb_str.c
 
 AR        = ar rc
 
