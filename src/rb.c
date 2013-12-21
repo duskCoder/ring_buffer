@@ -38,6 +38,23 @@ t_rb *rb_put(t_rb *rb, const void *src, size_t n)
 {
     size_t size;
 
+    size = rb_get_size(rb);
+    if (n >= size) {
+        /* we will override the whole ring buffer */
+
+        /* the first bytes of src will not be copied, anyway */
+        src += (n - size);
+
+        memcpy(rb->buffer, src , size);
+
+        /* hardcode the values */
+        rb->size_filled = size;
+        rb->off_w       = 0;
+        rb->off_r       = 0;
+
+        return rb;
+    }
+
     /* loop until n bytes of src have been written */
     while (n != 0) {
         size = MIN(n, rb_get_size(rb) - rb->off_w);
