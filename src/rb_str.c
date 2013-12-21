@@ -31,8 +31,7 @@ static char	*__rb_gets2(t_rb *rb, const char *const *delim,
     if (b_ptr != NULL) {
         ret = strndup((const char *)data, (size_t)b_ptr - (size_t)data);
 
-        /* TODO replace with an appropriate function */
-        rb_get(rb, NULL, (size_t)b_ptr - (size_t)data + b_len);
+        rb_remove(rb, (size_t)b_ptr - (size_t)data + b_len);
     }
 
     return ret;
@@ -73,11 +72,8 @@ char *rb_gets(t_rb *rb, const char *delimit)
 
     if (ptr != NULL) {
         ret = strndup(data, (size_t)ptr - (size_t)data);
-        /*
-         * TODO replace by a function which only removes data from the
-         * ring buffer
-         */
-        rb_get(rb, data, (size_t)ptr - (size_t)data + strlen(delimit));
+
+        rb_remove(rb, (size_t)ptr - (size_t)data + strlen(delimit));
     }
 
     free(data);
