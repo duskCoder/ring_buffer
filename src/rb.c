@@ -96,7 +96,9 @@ size_t rb_peek(const t_rb *rb, void *dest, size_t n)
         /* do not try to retrieve too much data */
         size = MIN(n, rb_get_size(rb) - rb->off_r);
 
-        memcpy(dest, &rb->buffer[rb->off_r], size);
+        if (dest != NULL) {
+            memcpy(dest, &rb->buffer[rb->off_r], size);
+        }
 
         dest += size;
         n    -= size;
@@ -106,7 +108,9 @@ size_t rb_peek(const t_rb *rb, void *dest, size_t n)
 
     size2 = MIN(n, (size_t)(rb->off_w - offset));
 
-    memcpy(dest, &rb->buffer[offset], size2);
+    if (dest != NULL) {
+        memcpy(dest, &rb->buffer[offset], size2);
+    }
 
     return size + size2;
 }

@@ -46,4 +46,13 @@ size_t rb_get(t_rb *rb, void *dest, size_t n);
  */
 size_t rb_peek(const t_rb *ring_buffer, void *dest, size_t size);
 
+/*
+ * remove a maximum of n bytes from the ring buffer pointed to by rb
+ * the functions returns the number of bytes actually removed
+ */
+static inline size_t rb_remove(t_rb *rb, size_t n)
+{
+    return rb_get(rb, NULL, n);
+}
+
 #endif /* RING_BUFFER_H */
