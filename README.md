@@ -1,4 +1,4 @@
 ring_buffer
 ===========
 
-A ready to use library in order to deal with ring buffers.
+A ready to use library meant to deal with ring buffers.
