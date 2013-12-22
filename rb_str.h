@@ -26,7 +26,7 @@ char *rb_gets(t_rb *rb, const char *delim);
  * the longest will be discarded
  *
  * common use case:
- *      request = rb_gets(rb, (const char *[]){"\n", "\r", "\r\n"})
+ *      request = rb_gets(rb, (const char *[]){"\n", "\r", "\r\n", NULL})
  *  which will return a request disregarding whether netcat or telnet is used
  */
 char *rb_gets2(t_rb *rb, const char *const *delim);
