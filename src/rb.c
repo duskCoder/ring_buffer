@@ -6,7 +6,7 @@
 #define MAX(_x1, _x2) (((_x1) > (_x2)) ? (_x1) : (_x2))
 #define MIN(_x1, _x2) (((_x1) < (_x2)) ? (_x1) : (_x2))
 
-int rb_init(t_rb *rb)
+int rb_init(rb_t *rb)
 {
     rb->off_r       = 0;
     rb->off_w       = 0;
@@ -15,11 +15,11 @@ int rb_init(t_rb *rb)
     return 0;
 }
 
-t_rb *rb_new(void)
+rb_t *rb_new(void)
 {
-    t_rb *rb;
+    rb_t *rb;
 
-    if ((rb = malloc(sizeof(t_rb))) == NULL) {
+    if ((rb = malloc(sizeof(rb_t))) == NULL) {
         return NULL;
     }
 
@@ -28,13 +28,13 @@ t_rb *rb_new(void)
     return rb;
 }
 
-void rb_delete(t_rb **rb)
+void rb_delete(rb_t **rb)
 {
     free(*rb);
     *rb = NULL;
 }
 
-t_rb *rb_put(t_rb *rb, const void *src, size_t n)
+rb_t *rb_put(rb_t *rb, const void *src, size_t n)
 {
     size_t size;
 
@@ -83,7 +83,7 @@ t_rb *rb_put(t_rb *rb, const void *src, size_t n)
     return rb;
 }
 
-size_t rb_get(t_rb *rb, void *dest, size_t n)
+size_t rb_get(rb_t *rb, void *dest, size_t n)
 {
     size_t size = rb_peek(rb, dest, n);
 
@@ -98,7 +98,7 @@ size_t rb_get(t_rb *rb, void *dest, size_t n)
     return size;
 }
 
-size_t rb_peek(const t_rb *rb, void *dest, size_t n)
+size_t rb_peek(const rb_t *rb, void *dest, size_t n)
 {
     uint16_t offset;
     size_t size;

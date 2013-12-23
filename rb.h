@@ -13,9 +13,13 @@ typedef struct t_ring_buffer {
     size_t size_filled;
 } t_ring_buffer;
 
+/* do not remove for backward compatibility */
 typedef t_ring_buffer t_rb;
 
-static inline size_t rb_get_size(const t_rb *rb)
+typedef t_ring_buffer ring_buffer_t;
+typedef t_ring_buffer rb_t;
+
+static inline size_t rb_get_size(const rb_t *rb)
 {
     return sizeof(rb->buffer);
 }
@@ -24,33 +28,33 @@ static inline size_t rb_get_size(const t_rb *rb)
  * initializes rb with default values.
  * returns 0 on success
  */
-int rb_init(t_rb *rb);
+int rb_init(rb_t *rb);
 
 /* returns an initialized newly allocated ring buffer */
-__attribute((malloc)) t_rb *rb_new(void);
+__attribute((malloc)) rb_t *rb_new(void);
 
-void rb_delete(t_rb **);
+void rb_delete(rb_t **);
 
 /* put n bytes of src into the ring buffer pointed by rb */
-t_rb *rb_put(t_rb *rb, const void *src, size_t n);
+rb_t *rb_put(rb_t *rb, const void *src, size_t n);
 
 /*
  * take at most n bytes from the ring buffer pointed by rb and
  * put them into dest
  */
-size_t rb_get(t_rb *rb, void *dest, size_t n);
+size_t rb_get(rb_t *rb, void *dest, size_t n);
 
 /*
  * like rb_get but does not modify the ring_buffer (the bytes are kept
  * in the ring_buffer)
  */
-size_t rb_peek(const t_rb *ring_buffer, void *dest, size_t size);
+size_t rb_peek(const rb_t *ring_buffer, void *dest, size_t size);
 
 /*
  * remove a maximum of n bytes from the ring buffer pointed to by rb
  * the functions returns the number of bytes actually removed
  */
-static inline size_t rb_remove(t_rb *rb, size_t n)
+static inline size_t rb_remove(rb_t *rb, size_t n)
 {
     return rb_get(rb, NULL, n);
 }

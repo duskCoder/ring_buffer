@@ -17,7 +17,7 @@
  * common use case:
  *      request = rb_gets(rb, "\r\n")
  */
-char *rb_gets(t_rb *rb, const char *delim);
+char *rb_gets(rb_t *rb, const char *delim);
 
 /*
  * same as the above function but takes a null terminated array of delimiters
@@ -29,19 +29,19 @@ char *rb_gets(t_rb *rb, const char *delim);
  *      request = rb_gets(rb, (const char *[]){"\n", "\r", "\r\n", NULL})
  *  which will return a request disregarding whether netcat or telnet is used
  */
-char *rb_gets2(t_rb *rb, const char *const *delim);
+char *rb_gets2(rb_t *rb, const char *const *delim);
 
 /*
  * this functions writes str to the ring buffer pointed by rb. If the ring
  * buffer is not large enough to contain all the data, the beginning will be
  * overriden. However, a buffer overflow is not susceptible to happen.
  */
-static inline t_rb *rb_puts(t_rb *rb, const char *str)
+static inline rb_t *rb_puts(rb_t *rb, const char *str)
 {
     return rb_put(rb, str, strlen(str));
 }
 
-t_rb *rb_vprintf(t_rb *rb, const char *fmt, va_list list);
+rb_t *rb_vprintf(rb_t *rb, const char *fmt, va_list list);
 
 /*
  * function which behaves like sprintf but which writes into a ring buffer
@@ -49,6 +49,6 @@ t_rb *rb_vprintf(t_rb *rb, const char *fmt, va_list list);
  * the beginning will be overriden. However, a buffer overflow will not occur
  */
     __attribute__((format(printf, 2, 3)))
-t_rb *rb_printf(t_rb *rb, const char *fmt, ...);
+rb_t *rb_printf(rb_t *rb, const char *fmt, ...);
 
 #endif /* RB_STR_H */

@@ -4,7 +4,7 @@
 
 typedef uint8_t byte;
 
-static char	*__rb_gets2(t_rb *rb, const char *const *delim,
+static char	*__rb_gets2(rb_t *rb, const char *const *delim,
         const byte *data, size_t size)
 {
     char *ret = NULL;
@@ -37,7 +37,7 @@ static char	*__rb_gets2(t_rb *rb, const char *const *delim,
     return ret;
 }
 
-char *rb_gets2(t_rb *rb, const char *const *delim)
+char *rb_gets2(rb_t *rb, const char *const *delim)
 {
     size_t size;
     char *ret;
@@ -58,7 +58,7 @@ char *rb_gets2(t_rb *rb, const char *const *delim)
     return ret;
 }
 
-char *rb_gets(t_rb *rb, const char *delimit)
+char *rb_gets(rb_t *rb, const char *delimit)
 {
     char *data  = malloc((rb->size_filled) * sizeof(char));
 
@@ -81,7 +81,7 @@ char *rb_gets(t_rb *rb, const char *delimit)
     return ret;
 }
 
-t_rb *rb_vprintf(t_rb *rb, const char *fmt, va_list ap)
+rb_t *rb_vprintf(rb_t *rb, const char *fmt, va_list ap)
 {
     char *buffer;
 
@@ -102,7 +102,7 @@ t_rb *rb_vprintf(t_rb *rb, const char *fmt, va_list ap)
 }
 
     __attribute__((format(printf, 2, 3)))
-t_rb *rb_printf(t_rb *rb, const char *fmt, ...)
+rb_t *rb_printf(rb_t *rb, const char *fmt, ...)
 {
     va_list	ap;
 
