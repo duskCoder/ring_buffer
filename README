@@ -1,0 +1,26 @@
+ring_buffer
+===========
+
+A ready to use library meant to deal with ring buffers.
+
+Installation
+============
+
+$ autoreconf -i
+should do the necessary to generate the ./configure script
+
+if aclocal complains about a missing m4 directory, just create it
+
+$ mkdir m4
+
+then read the INSTALL file or simply do a
+
+$ ./configure && make && [sudo] make install
+
+which should do the trick
+
+License
+=======
+
+This library is free software covered by the GPL license v2. You should
+read the COPYING file to understand what is implied.
