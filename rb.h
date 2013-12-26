@@ -19,6 +19,9 @@
 #ifndef RING_BUFFER_H
 #define RING_BUFFER_H
 
+/* needed for the definition of NULL */
+#include <stdlib.h>
+
 #include <stdint.h>
 #include <sys/types.h>
 
