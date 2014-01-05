@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2013 Olivier Gayot
+ * Copyright (C) 2013-2014 Olivier Gayot
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
